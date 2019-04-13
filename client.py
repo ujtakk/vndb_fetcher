@@ -11,7 +11,7 @@ import argparse
 
 HOSTNAME = "api.vndb.org"
 PORT = 19534
-BUFFER_SIZE = 2**14
+BUFFER_SIZE = 2**12
 
 
 
