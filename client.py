@@ -100,9 +100,9 @@ def fetch_vndb(typ, flags):
         "character": ('id', 'chars'),
         "staff": ('id', 'staff'),
         "user": ('id', 'users'),
-        "votelist": ('uid', 'users'),
-        "vnlist": ('uid', 'users'),
-        "wishlist": ('uid', 'users'),
+        "votelist": ('vn', 'vn'),
+        "vnlist": ('vn', 'vn'),
+        "wishlist": ('vn', 'vn'),
     }
     attr_name, attr_src = attr[typ]
 
@@ -117,7 +117,7 @@ def fetch_vndb(typ, flags):
         results = 25 if "list" not in typ else 100
         while count < stats[attr_src]:
             fltr = f'({attr_name} = {repr(list(range(index, index+results)))})'
-            cfg = {"page": page, "results": results, "sort": attr_name}
+            cfg = {"page": page, "results": results, "reverse": False}
             res = s.get(typ, flags, fltr, json.dumps(cfg).replace(" ", ""))
 
             if 'id' in res:
